@@ -1,6 +1,18 @@
+<form id='form' method='post' action='https://github.com/login/oauth/access_token'>
+  <input name='client_id' value='14c685f8cacef5e74a69'/>
+  <input name='client_secret' value='3dc0f362e81615fbfe9f681bb03d17fa6843d09d'/>
+  <input id='code' name='code'/>
+</form>
+
 <script>
 // Step 3
-var code = String(window.location).split('code=')[1].split('&')[0]
+var code = String(window.location).split('code=')[1].split('&')[0];
 window.opener.postMessage(code, window.location);
+
+// Step 4
+document.getElementById('code').value = code;
+debugger;
+document.getElementById('form').submit();
+
 window.close();
 </script>
