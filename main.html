@@ -1,5 +1,4 @@
 <a href="https://github.com/vjeux/GithubLogin/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/e6bef7a091f5f3138b8cd40bc3e114258dd68ddf/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
-<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 
 <style>
 label, textarea, a { display: block; }
@@ -15,19 +14,20 @@ input { width: 300px; }
 
 <script>
 // Step 2
-$('#login').click(function () {
-	window.open('https://github.com' + 
-		'/login/oauth/authorize' + 
-		'?client_id=58a3dcf21a0bae21db44' +
-		'&scope=gist');
-});
+
+document.getElementById('login').addEventListener('click', function onclick() {
+  window.open('https://github.com/login/oauth/authorize' + 
+		          '?client_id=14c685f8cacef5e74a69' +
+		          '&scope=gist');
+}, false);
 
 // Step 4
 window.addEventListener('message', function (event) {
 	var code = event.data;
-	$('#code').val(code);
+  document.getElementById('code').value = code;
 
 	// Step 5
+  /*
 	$.get('token.php?code=' + code, function (access_token) {
 		// Step 7
 		$('#access_token').val(access_token);
@@ -36,7 +36,8 @@ window.addEventListener('message', function (event) {
 			$('#username').val(user.login);
 		});
 	});
-});
+  */
+}, false);
 </script>
 
 <hr />
@@ -47,9 +48,9 @@ window.addEventListener('message', function (event) {
 <label>link <input type="text" id="gist_link"></input></label>
 
 <script>
-$('#gist_new').click(function () {
+document.getElementById('gist_new').addEventListener('click', function newgist() {
 	var url = 'https://api.github.com/gists' +
-		'?access_token=' + $('#access_token').val();
+	          '?access_token=' + document.getElementById('access_token').value;
 
 	var data = JSON.stringify({
 		"public": false,
@@ -60,8 +61,10 @@ $('#gist_new').click(function () {
 		}
 	});
 
+  /*
 	$.post(url, data, function (gist) {
 		$('#gist_link').val(gist.html_url);
 	});
-});
+  */
+}, false);
 </script>
